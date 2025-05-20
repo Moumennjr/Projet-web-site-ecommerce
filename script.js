@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Erreur:', error);
-                alert('Une erreur s\'est produite lors de l\'ajout au panier.');
+                alert('Une erreur s\'est produite lors de l\'ajout au panier : ' + error.message);
                 button.textContent = 'Ajouter';
                 button.disabled = false;
             });
@@ -125,6 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const cartId = button.getAttribute('data-cart-id');
+            console.log('ID du panier validé :', cartId); // Afficher l'ID dans la console
+
             button.disabled = true;
             button.textContent = 'Validation...';
 
@@ -135,7 +137,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: `cart_id=${cartId}`
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur HTTP : ' + response.status);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     window.location.reload();
@@ -147,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Erreur:', error);
-                alert('Une erreur s\'est produite lors de la validation.');
+                alert('Une erreur s\'est produite lors de la validation : ' + error.message);
                 button.textContent = 'Valider';
                 button.disabled = false;
             });
@@ -173,7 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: `cart_id=${cartId}`
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur HTTP : ' + response.status);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     window.location.reload();
@@ -185,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Erreur:', error);
-                alert('Une erreur s\'est produite lors de la suppression.');
+                alert('Une erreur s\'est produite lors de la suppression : ' + error.message);
                 button.textContent = 'Supprimer';
                 button.disabled = false;
             });
@@ -211,7 +223,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: `user_id=${userId}`
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur HTTP : ' + response.status);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     window.location.reload();
@@ -223,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Erreur:', error);
-                alert('Une erreur s\'est produite lors de la validation.');
+                alert('Une erreur s\'est produite lors de la validation : ' + error.message);
                 validateAllButton.textContent = validateAllButton.textContent.replace('Validation...', 'Valider tout');
                 validateAllButton.disabled = false;
             });
@@ -249,7 +266,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: `user_id=${userId}`
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur HTTP : ' + response.status);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     window.location.reload();
@@ -261,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Erreur:', error);
-                alert('Une erreur s\'est produite lors de la suppression.');
+                alert('Une erreur s\'est produite lors de la suppression : ' + error.message);
                 deleteAllButton.textContent = 'Supprimer tout';
                 deleteAllButton.disabled = false;
             });

@@ -37,7 +37,6 @@ mysqli_stmt_close($stmt_check);
 // Appeler la procédure stockée
 $stmt = mysqli_prepare($conn, "CALL valider_commande_panier(?)");
 mysqli_stmt_bind_param($stmt, 'i', $cart_id);
-
 if (mysqli_stmt_execute($stmt)) {
     $response['success'] = true;
 } else {
