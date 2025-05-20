@@ -30,13 +30,13 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
 }
 
 $where_clause = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
-$query = "SELECT * FROM item $where_clause LIMIT 5"; // Limiter à 5 items pour correspondre à l'image
+$query = "SELECT * FROM item $where_clause LIMIT 5";
 $result = mysqli_query($conn, $query);
 $items = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $items[] = $row;
 }
-$featured_item = !empty($items) ? array_shift($items) : null; // Premier item comme produit mis en avant
+$featured_item = !empty($items) ? array_shift($items) : null;
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +45,8 @@ $featured_item = !empty($items) ? array_shift($items) : null; // Premier item co
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ElectroShop</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="shopping-cart-114.png">
 </head>
 <body>
     <header class="header">
@@ -88,7 +89,7 @@ $featured_item = !empty($items) ? array_shift($items) : null; // Premier item co
                     <h2><?php echo htmlspecialchars($featured_item['nom']); ?></h2>
                     <p class="price"><?php echo number_format($featured_item['prix'], 2); ?> €</p>
                     <p><?php echo htmlspecialchars($featured_item['description']); ?></p>
-                    <button class="btn add-to-cart" data-id="<?php echo $featured_item['id']; ?>">Ajouter au panier</button>
+                    <a href="item.php?id=<?php echo $featured_item['id']; ?>" class="btn">Voir détails</a>
                 </div>
             <?php else: ?>
                 <p>Aucun produit disponible pour le moment.</p>
@@ -101,7 +102,7 @@ $featured_item = !empty($items) ? array_shift($items) : null; // Premier item co
                     <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['nom']); ?>">
                     <h3><?php echo htmlspecialchars($item['nom']); ?></h3>
                     <p class="price"><?php echo number_format($item['prix'], 2); ?> €</p>
-                    <button class="btn add-to-cart" data-id="<?php echo $item['id']; ?>">Ajouter au panier</button>
+                    <a href="item.php?id=<?php echo $item['id']; ?>" class="btn">Voir détails</a>
                 </div>
             <?php endforeach; ?>
         </div>

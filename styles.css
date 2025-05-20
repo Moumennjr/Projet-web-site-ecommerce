@@ -70,8 +70,10 @@ body {
 }
 
 .main-content {
+    min-height: calc(100vh - 120px); /* Hauteur minimale pour centrer verticalement */
     display: flex;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
     flex-wrap: wrap;
 }
@@ -145,6 +147,131 @@ body {
     margin-bottom: 8px;
 }
 
+.item-details {
+    flex: 1;
+    min-width: 300px;
+    background-color: #FFF;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.item-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.item-info {
+    flex: 1;
+    min-width: 200px;
+}
+
+.item-info h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.item-info .price {
+    font-size: 16px;
+    color: #2E7D32;
+    margin-bottom: 10px;
+}
+
+.item-info p {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.quantity-selector label {
+    font-size: 12px;
+    color: #333;
+}
+
+.quantity-selector input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.register-form,
+.login-form {
+    max-width: 400px;
+    width: 100%;
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.register-form h2,
+.login-form h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.errors {
+    color: #D32F2F;
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.success {
+    color: #2E7D32;
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.register-form p,
+.login-form p {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.register-form a,
+.login-form a {
+    color: #90CAF9;
+    text-decoration: none;
+}
+
 .btn {
     padding: 6px 12px;
     background-color: #2E7D32;
@@ -195,7 +322,18 @@ body {
     }
 
     .featured-product,
-    .products-grid {
+    .products-grid,
+    .item-details,
+    .register-form,
+    .login-form {
         width: 100%;
+    }
+
+    .item-details {
+        flex-direction: column;
+    }
+
+    .item-image img {
+        height: 200px;
     }
 }

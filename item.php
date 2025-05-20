@@ -69,7 +69,11 @@ $item = mysqli_fetch_assoc($result);
                 <p><strong>Catégorie :</strong> <?php echo htmlspecialchars($item['categorie'] ?: 'Non spécifiée'); ?></p>
                 <p><strong>Stock :</strong> <?php echo htmlspecialchars($item['stock']); ?> unité(s)</p>
                 <p><?php echo htmlspecialchars($item['description']); ?></p>
-                <button class="btn add-to-cart" data-id="<?php echo $item['id']; ?>">Ajouter au panier</button>
+                <div class="quantity-selector">
+                    <label for="quantity">Quantité :</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="<?php echo htmlspecialchars($item['stock']); ?>" value="1">
+                </div>
+                <button class="btn add-to-cart" data-id="<?php echo $item['id']; ?>">Ajouter</button>
             </div>
         </div>
     </main>
